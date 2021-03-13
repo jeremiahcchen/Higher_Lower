@@ -58,14 +58,6 @@ int main()
 
     shuffle(Deck);
 
-    // Checks if the Deck is randomly shuffled
-    // for(int i = 0; i < SIZE; i++)
-    // {
-    //     cout << "Card " << i << " : " << Deck[i] << endl;
-    // }
-
-
-    //---------------------------------------------------
     cout << "Welcome to Higher or Lower" << endl;
     cout << "Game Start" << endl;
 
@@ -113,7 +105,8 @@ int main()
 
                 default:
                     logic = false;
-                    cout << "Please Select the Given Choices\n";
+                    cout << "\nPlease Select the Given Choices\n\n";
+                    cout << "Card: " << Deck[cardIndex] << endl << endl;
             }
 
             if(player1.strike == 3)
@@ -163,7 +156,8 @@ int main()
 
                 default:
                     logic = false;
-                    cout << "Please Select the Given Choices\n";
+                    cout << "\nPlease Select the Given Choices\n\n";
+                    cout << "Card: " << Deck[cardIndex] << endl << endl;
             }
 
             if(player2.strike == 3)
