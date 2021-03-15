@@ -236,6 +236,8 @@ int main()
             }
             if(player1.strike == tStrikes)
             {
+                cout << "\nCard: " << Deck[cardIndex] << endl << endl;
+                cout << "Team has " << player1.strike << " strikes." << endl;
                 cout << "\nTeam Loses" << endl;
                 return 0;
             }
