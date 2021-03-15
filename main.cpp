@@ -39,10 +39,12 @@ int main()
 {
     int card_count = 1;
     int cardIndex = 0;
+    int tStrikes = 0;
     int Deck[SIZE];
-    bool gameOver;
-    bool logic;
+    bool gameOver;      //When true game is over
+    bool logic;         //logic for player decisions
     char guess;
+    char mode;
     Player player1 = Player();
     Player player2 = Player();
 
@@ -59,15 +61,36 @@ int main()
     shuffle(Deck);
 
     cout << "Welcome to Higher or Lower" << endl;
-    cout << "Game Start" << endl;
+
+    //Game Mode
+    while(!logic)
+    {
+        logic = true;
+        cout << "Which Game mode you do want to play (Verses or Team)? (v or t): ";
+        cin >> mode;
+        switch(mode)
+        {
+            case 'v':
+                cout << "\nGame Mode: VS" << endl;
+                break;
+            case 't':
+                cout << "\nGame Mode: Team" << endl;
+                cout << "\nHow many total strikes do you want?: ";
+                cin >> tStrikes;
+                break;
+            default:
+                logic = false;
+                cout << "\nPlease Select the Given Choices\n\n";
+        }
+    }
 
 
-    while(!gameOver)
+    //VERSES
+    while(!gameOver && mode == 'v')
     {
         logic = false;
         cout << "\nCard: " << Deck[cardIndex] << endl << endl;
         cardIndex++;
-
         //Player 1
         while(!logic){
             logic = true;
@@ -82,14 +105,12 @@ int main()
                         player1.strike++;
                     }
                     break;
-
                 case 'l':
                     if(Deck[cardIndex - 1] < Deck[cardIndex] || Deck[cardIndex - 1] == Deck[cardIndex])
                     {
                         player1.strike++;
                     }
                     break;
-
                 case 's':
                     if(Deck[cardIndex - 1] == Deck[cardIndex])
                     {
@@ -102,24 +123,22 @@ int main()
                         player1.strike++;
                     }
                     break;
-
                 default:
                     logic = false;
                     cout << "\nPlease Select the Given Choices\n\n";
                     cout << "Card: " << Deck[cardIndex] << endl << endl;
             }
-
             if(player1.strike == 3)
             {
+                cout << "\nCard: " << Deck[cardIndex] << endl << endl;
+                cout << "Player 1 has " << player1.strike << " strikes." << endl;
                 cout << "\nPlayer 1 Loses" << endl;
                 return 0;
             }
         }
-
         cout << "\nCard: " << Deck[cardIndex] << endl << endl;
         cardIndex++;
         logic = false;
-
         //Player 2
         while(!logic){
             logic = true;
@@ -134,14 +153,12 @@ int main()
                         player2.strike++;
                     }
                     break;
-
                 case 'l':
                     if(Deck[cardIndex - 1] < Deck[cardIndex] || Deck[cardIndex - 1] == Deck[cardIndex])
                     {
                         player2.strike++;
                     }
                     break;
-
                 case 's':
                     if(Deck[cardIndex - 1] == Deck[cardIndex])
                     {
@@ -153,23 +170,80 @@ int main()
                         player2.strike++;
                     }
                     break;
-
                 default:
                     logic = false;
                     cout << "\nPlease Select the Given Choices\n\n";
                     cout << "Card: " << Deck[cardIndex] << endl << endl;
             }
-
             if(player2.strike == 3)
             {
+                cout << "\nCard: " << Deck[cardIndex] << endl << endl;
+                cout << "Player 2 has " << player2.strike << " strikes." << endl;
                 cout << "\nPlayer 2 Loses" << endl;
+                return 0;
+            }
+        }
+        if(cardIndex > 51)
+        {
+            cout << "Tie, Good Game" << endl;
+            gameOver = true;
+        }
+    }
+
+//---------------------------------TEAM------------------------------------
+
+    while(!gameOver && mode == 't')
+    {
+        logic = false;
+        cout << "\nCard: " << Deck[cardIndex] << endl << endl;
+        cardIndex++;
+        //Player 1
+        while(!logic){
+            logic = true;
+            cout << "Players has " << player1.strike << " strikes." << endl;
+            cout << "Guess (h,l,s): ";
+            cin >> guess;
+            switch(guess)
+            {
+                case 'h':
+                    if(Deck[cardIndex - 1] > Deck[cardIndex] || Deck[cardIndex - 1] == Deck[cardIndex])
+                    {
+                        player1.strike++;
+                    }
+                    break;
+                case 'l':
+                    if(Deck[cardIndex - 1] < Deck[cardIndex] || Deck[cardIndex - 1] == Deck[cardIndex])
+                    {
+                        player1.strike++;
+                    }
+                    break;
+                case 's':
+                    if(Deck[cardIndex - 1] == Deck[cardIndex])
+                    {
+                        cout << "\nYOU WON!!!" << endl;
+                        gameOver = true;
+                        return 0;
+                    }
+                    else
+                    {
+                        player1.strike++;
+                    }
+                    break;
+                default:
+                    logic = false;
+                    cout << "\nPlease Select the Given Choices\n\n";
+                    cout << "Card: " << Deck[cardIndex] << endl << endl;
+            }
+            if(player1.strike == tStrikes)
+            {
+                cout << "\nTeam Loses" << endl;
                 return 0;
             }
         }
 
         if(cardIndex > 51)
         {
-            cout << "Tie, Good Game" << endl;
+            cout << "You Win!!!" << endl;
             gameOver = true;
         }
     }
