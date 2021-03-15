@@ -5,7 +5,7 @@ A card game for two players.
 
   Choose a game mode (verses or team):
   
-  ###Verses
+  > Verses
   
   Allow two players to take turn guessing higher, lower, or same.
   
@@ -20,7 +20,8 @@ A card game for two players.
   
   If the entire deck was played the game ends in a draw.
   
-  ###Team
+  > Team
+  
   Allow the players to choose how many total strikes they want
   
   Allow two players to take turn guessing higher, lower, or same.
