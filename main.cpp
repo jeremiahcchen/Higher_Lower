@@ -66,7 +66,7 @@ int main()
     while(!logic)
     {
         logic = true;
-        cout << "Which Game mode you do want to play (Verses or Team)? (v or t): ";
+        cout << "Which Game mode do you want to play (Verses or Team)? (v or t): ";
         cin >> mode;
         switch(mode)
         {
